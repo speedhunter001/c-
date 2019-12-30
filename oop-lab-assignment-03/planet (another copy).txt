@@ -1,0 +1,7 @@
+Sr.No Planet     Population  Gravity
+0     Earth:     6928198253  9.81
+1	  Jenny:     32155648    8.93
+2	  Tramtor:   89000000000 15.03
+3	  Trellan:   5214000     9.62
+4 	  Freestone: 3945851000  8.68
+5 	  Taanagoot: 361000004   10.23

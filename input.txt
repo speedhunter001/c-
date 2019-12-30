@@ -1,0 +1,4 @@
+ABC 23 B+
+XYZ 20 A+
+JKL 11 A-
+EFG 30 O+

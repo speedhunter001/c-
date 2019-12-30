@@ -1,0 +1,4 @@
+Abstraction
+Encapsulation 
+Data hiding
+Polymorphism

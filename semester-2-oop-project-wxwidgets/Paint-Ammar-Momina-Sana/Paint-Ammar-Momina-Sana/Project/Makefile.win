@@ -1,0 +1,55 @@
+# Project: Project1
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ IDE 7.4.2.569 on 13/05/19 03:46
+
+WXLIBNAME = wxmsw29u
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = Objects/MingW/paintApp.o Objects/MingW/paintFrm.o Objects/MingW/formulas.o Objects/MingW/string-conversions.o Objects/MingW/shapes.o Objects/MingW/paint_private.res
+LINKOBJ   = "Objects/MingW/paintApp.o" "Objects/MingW/paintFrm.o" "Objects/MingW/formulas.o" "Objects/MingW/string-conversions.o" "Objects/MingW/shapes.o" Objects/MingW/paint_private.res
+LIBS      = -L"D:/softwares/Dev-Cpp/lib/wx/gcc_lib" -L"D:/softwares/Dev-Cpp/lib" -L"D:/softwares/Dev-Cpp/MinGW32/lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxscintilla -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
+INCS      = -I"D:/softwares/Dev-Cpp/MinGW32/include"
+CXXINCS   = -I"D:/softwares/Dev-Cpp/MinGW32/include" -I"D:/softwares/Dev-Cpp/" -I"D:/softwares/Dev-Cpp/include/common"
+RCINCS    = --include-dir "D:/softwares/Dev-Cpp/include/common"
+BIN       = Output/MingW/paint.exe
+DEFINES   = -D__WXMSW__ -D__GNUWIN32__ -D_UNICODE
+CXXFLAGS  = $(CXXINCS) $(DEFINES)   -std=gnu++0x
+CFLAGS    = $(INCS) $(DEFINES)   -std=gnu++0x
+GPROF     = gprof.exe
+ifeq ($(OS),Windows_NT)
+   RM = del /Q
+   FixPath = $(subst /,\,$1)
+else
+   RM = rm -f
+   FixPath = $1
+endif
+LINK      = g++.exe
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(call FixPath,$(LINKOBJ)) "$(call FixPath,$(BIN))"
+
+$(BIN): $(OBJ)
+	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
+
+Objects/MingW/paintApp.o: $(GLOBALDEPS) paintApp.cpp paintApp.h paintFrm.h shapes.h formulas.h string-conversions.h
+	$(CPP) -c paintApp.cpp -o Objects/MingW/paintApp.o $(CXXFLAGS)
+
+Objects/MingW/paintFrm.o: $(GLOBALDEPS) paintFrm.cpp paintFrm.h shapes.h formulas.h string-conversions.h
+	$(CPP) -c paintFrm.cpp -o Objects/MingW/paintFrm.o $(CXXFLAGS)
+
+Objects/MingW/formulas.o: $(GLOBALDEPS) ../paint-version-3/formulas.cpp
+	$(CPP) -c ../paint-version-3/formulas.cpp -o Objects/MingW/formulas.o $(CXXFLAGS)
+
+Objects/MingW/string-conversions.o: $(GLOBALDEPS) string-conversions.cpp
+	$(CPP) -c string-conversions.cpp -o Objects/MingW/string-conversions.o $(CXXFLAGS)
+
+Objects/MingW/shapes.o: $(GLOBALDEPS) shapes.cpp shapes.h
+	$(CPP) -c shapes.cpp -o Objects/MingW/shapes.o $(CXXFLAGS)
+
+Objects/MingW/paint_private.res: Objects/MingW/paint_private.rc paintApp.rc 
+	$(WINDRES) --input-format=rc -o Objects/MingW/paint_private.res $(RCINCS) Objects/MingW/paint_private.rc -O coff
